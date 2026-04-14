@@ -1,0 +1,11 @@
+{
+  "simple_bootloader_input": {
+    "tasks": [
+      {
+        "RunProgramTask": {
+          "program_input_path": "{{PIE_PATH}}"
+        }
+      }
+    ]
+  }
+}

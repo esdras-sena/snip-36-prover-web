@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "snip36 CLI was removed from this copy." >&2
+echo "Use the backend instead, for example:" >&2
+echo "  cargo run --release -p snip36-playground" >&2
+exit 1

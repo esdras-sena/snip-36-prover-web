@@ -1,0 +1,36 @@
+# Dependencies (cloned repos, built binaries)
+deps/
+
+# Build output
+output/
+
+# Rust build artifacts
+target/
+
+# Proof files
+*.proof
+
+# Cairo PIE archives
+*.pie.zip
+
+# Environment secrets
+.env
+
+# Python virtual environments (legacy, used during setup for cairo-compile)
+sequencer_venv/
+venv/
+__pycache__/
+
+# Node
+node_modules/
+
+# Frontend build output
+dist/
+
+# IDE
+.vscode/
+.idea/
+
+# Scarb build artifacts
+tests/contracts/target/
+.DS_Store
