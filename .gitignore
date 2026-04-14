@@ -34,3 +34,4 @@ dist/
 # Scarb build artifacts
 tests/contracts/target/
 .DS_Store
+target-snip36-virtual-os/
