@@ -148,6 +148,7 @@ checksum = "7f202df86484c868dbad7eaa557ef785d5c66295e41b460ef922eca0723b842c"
 [[package]]
 name = "apollo_class_manager_types"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_compile_to_casm_types",
  "apollo_infra",
@@ -162,6 +163,7 @@ dependencies = [
 [[package]]
 name = "apollo_compilation_utils"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_infra_utils",
  "cairo-lang-sierra",
@@ -179,6 +181,7 @@ dependencies = [
 [[package]]
 name = "apollo_compile_to_casm"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_compilation_utils",
  "apollo_compile_to_casm_types",
@@ -199,6 +202,7 @@ dependencies = [
 [[package]]
 name = "apollo_compile_to_casm_types"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_infra",
  "apollo_metrics",
@@ -213,6 +217,7 @@ dependencies = [
 [[package]]
 name = "apollo_compile_to_native_types"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_config",
  "serde",
@@ -222,6 +227,7 @@ dependencies = [
 [[package]]
 name = "apollo_config"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_infra_utils",
  "clap",
@@ -239,6 +245,7 @@ dependencies = [
 [[package]]
 name = "apollo_infra"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_config",
  "apollo_infra_utils",
@@ -268,6 +275,7 @@ dependencies = [
 [[package]]
 name = "apollo_infra_utils"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_proc_macros",
  "num_enum",
@@ -283,6 +291,7 @@ dependencies = [
 [[package]]
 name = "apollo_metrics"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_time",
  "indexmap 2.14.0",
@@ -296,6 +305,7 @@ dependencies = [
 [[package]]
 name = "apollo_proc_macros"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "lazy_static",
  "proc-macro2",
@@ -306,6 +316,7 @@ dependencies = [
 [[package]]
 name = "apollo_rpc_execution"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "anyhow",
  "apollo_class_manager_types",
@@ -330,6 +341,7 @@ dependencies = [
 [[package]]
 name = "apollo_sierra_compilation_config"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_config",
  "serde",
@@ -339,6 +351,7 @@ dependencies = [
 [[package]]
 name = "apollo_sizeof"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_sizeof_macros",
  "starknet-types-core",
@@ -347,6 +360,7 @@ dependencies = [
 [[package]]
 name = "apollo_sizeof_macros"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -356,6 +370,7 @@ dependencies = [
 [[package]]
 name = "apollo_starknet_os_program"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_infra_utils",
  "cairo-vm",
@@ -370,6 +385,7 @@ dependencies = [
 [[package]]
 name = "apollo_storage"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_config",
  "apollo_metrics",
@@ -407,6 +423,7 @@ dependencies = [
 [[package]]
 name = "apollo_time"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "chrono",
 ]
@@ -1039,6 +1056,7 @@ dependencies = [
 [[package]]
 name = "blockifier"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "anyhow",
  "apollo_compile_to_native_types",
@@ -1082,6 +1100,7 @@ dependencies = [
 [[package]]
 name = "blockifier_reexecution"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_compile_to_casm",
  "apollo_compile_to_casm_types",
@@ -4693,6 +4712,7 @@ dependencies = [
 [[package]]
 name = "papyrus_common"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "cairo-lang-starknet-classes",
  "indexmap 2.14.0",
@@ -6170,6 +6190,7 @@ dependencies = [
 [[package]]
 name = "shared_execution_objects"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "blockifier",
  "serde",
@@ -6254,18 +6275,12 @@ dependencies = [
 name = "snip36-virtual-os"
 version = "0.1.0"
 dependencies = [
- "anyhow",
- "async-trait",
- "clap",
+ "blockifier_reexecution",
  "color-eyre",
- "reqwest",
  "serde",
  "serde_json",
+ "starknet_api",
  "starknet_transaction_prover",
- "tokio",
- "tracing",
- "tracing-subscriber",
- "url",
 ]
 
 [[package]]
@@ -6711,6 +6726,7 @@ dependencies = [
 [[package]]
 name = "starknet_api"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_infra_utils",
  "apollo_sizeof",
@@ -6746,6 +6762,7 @@ dependencies = [
 [[package]]
 name = "starknet_committer"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_config",
  "async-trait",
@@ -6771,6 +6788,7 @@ dependencies = [
 [[package]]
 name = "starknet_os"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_starknet_os_program",
  "ark-bls12-381",
@@ -6816,6 +6834,7 @@ dependencies = [
 [[package]]
 name = "starknet_patricia"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "async-recursion",
  "derive_more 2.1.1",
@@ -6835,6 +6854,7 @@ dependencies = [
 [[package]]
 name = "starknet_patricia_storage"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_config",
  "hex",
@@ -6850,6 +6870,7 @@ dependencies = [
 [[package]]
 name = "starknet_proof_verifier"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "apollo_sizeof",
  "privacy-circuit-verify",
@@ -6862,6 +6883,7 @@ dependencies = [
 [[package]]
 name = "starknet_transaction_prover"
 version = "0.18.0-dev.2"
+source = "git+https://github.com/starkware-libs/sequencer?tag=PRIVACY-0.14.2-RC.2#625e59bfd41d9b506950961d2e243cfc7c1395f6"
 dependencies = [
  "anyhow",
  "apollo_infra_utils",

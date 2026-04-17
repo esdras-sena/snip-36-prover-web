@@ -6,9 +6,11 @@ license.workspace = true
 
 [dependencies]
 snip36-core = { path = "../snip36-core" }
+snip36-virtual-os = { path = "../snip36-virtual-os" }
 serde = { workspace = true }
 serde_json = { workspace = true }
 thiserror = { workspace = true }
 tracing = { workspace = true }
 tokio = { workspace = true }
 starknet-types-core = { workspace = true }
+starknet_api = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_api" }

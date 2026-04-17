@@ -1,0 +1,23 @@
+[2026-04-14 17:37:30 -03]
+status: compiling
+1643182 87.5  0.4       00:00 /home/esdras/.rustup/toolchains/nightly-2025-07-14-x86_64-unknown-linux-gnu/bin/rustc --crate-name apollo_infra_utils --edition=2021 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/crates/apollo_infra_utils/src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --warn=unexpected_cfgs --warn=rust-2018-idioms --warn=nonstandard-style --warn=future-incompatible --warn=clippy::await_holding_refcell_ref --warn=clippy::await_holding_lock --warn=clippy::as_conversions --check-cfg cfg(coverage_nightly) --check-cfg cfg(addr_of) --check-cfg cfg(docsrs,test) --check-cfg cfg(feature, values("colored", "regex", "socket2", "strum", "tempfile", "testing")) -C metadata=7110ecc8fc59006e -C extra-filename=-872ecb142db50887 --out-dir /home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps -C incremental=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/incremental -L dependency=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps --extern apollo_proc_macros=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libapollo_proc_macros-fdb3604624f50636.so --extern num_enum=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libnum_enum-aef7da41884a0624.rmeta --extern serde=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libserde-e5042ed1196850cd.rmeta --extern serde_json=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libserde_json-7119ef9281dbe3db.rmeta --extern thiserror=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libthiserror-5709deba97e6255d.rmeta --extern tokio=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libtokio-3502f1702b65ed4b.rmeta --extern tracing=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libtracing-9adb1ca4ede6611f.rmeta --extern tracing_subscriber=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/libtracing_subscriber-350853e313e7d8a6.rmeta --extern url=/home/esdras/.openclaw/workspace/snip-36-prover-web/target-snip36-virtual-os/debug/deps/liburl-ae36d98e7cc202ae.rmeta
+--- recent target files ---
+
+[2026-04-14 17:45:30 -03]
+status: compiling
+--- recent target files ---
+
+[2026-04-17 14:47:30 -03]
+status: compiling
+--- recent target files ---
+2026-04-17 14:47:28.3557466760 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/liblambdaworks_math-e289bef4c0de7438.rmeta
+2026-04-17 14:47:28.5471252260 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libtracing_subscriber-eb7206ec8ea9a96c.rmeta
+2026-04-17 14:47:28.8101210080 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libsalsa-d9241bd8c5533963.rmeta
+2026-04-17 14:47:29.0100422110 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libsalsa-5593cc810328fae7.rmeta
+2026-04-17 14:47:29.4135167310 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libsalsa-d9241bd8c5533963.rlib
+2026-04-17 14:47:29.9005151630 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/liblambdaworks_math-b1ae610efb26ec61.rmeta
+2026-04-17 14:47:30.3415137420 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/liblambdaworks_math-b1ae610efb26ec61.rlib
+2026-04-17 14:47:30.5789196940 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libh2-720f7dbfd7a9c0bb.rmeta
+2026-04-17 14:47:30.6913494560 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libndarray-d56de3728b121e42.rmeta
+2026-04-17 14:47:30.7235125120 /home/esdras/.openclaw/workspace/snip-36-prover-web/deps/sequencer/target/debug/deps/libndarray-d56de3728b121e42.rlib
+
