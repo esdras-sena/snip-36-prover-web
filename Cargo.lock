@@ -2130,7 +2130,7 @@ version = "0.1.0"
 source = "git+https://github.com/starkware-libs/stwo-circuits?rev=2591775#2591775ae8fd7634eda7b77c471f87c163f65eb1"
 dependencies = [
  "blake2",
- "hashbrown 0.15.5",
+ "hashbrown 0.16.1",
  "indexmap 2.13.0",
  "itertools 0.12.1",
  "num-traits",
@@ -2143,7 +2143,7 @@ version = "0.1.0"
 source = "git+https://github.com/starkware-libs/stwo-circuits?rev=2591775#2591775ae8fd7634eda7b77c471f87c163f65eb1"
 dependencies = [
  "circuits",
- "hashbrown 0.15.5",
+ "hashbrown 0.16.1",
  "indexmap 2.13.0",
  "itertools 0.12.1",
  "num-traits",
@@ -2259,7 +2259,7 @@ version = "3.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "faf9468729b8cbcea668e36183cb69d317348c2e08e994829fb56ebfdfbaac34"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -3232,6 +3232,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "gloo-timers"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bbb143cf96099802033e0d4f4963b19fd2e0b728bcf076cd9cf7f6634f092994"
+dependencies = [
+ "futures-channel",
+ "futures-core",
+ "js-sys",
+ "wasm-bindgen",
+]
+
+[[package]]
 name = "good_lp"
 version = "1.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3371,7 +3383,6 @@ dependencies = [
  "allocator-api2",
  "equivalent",
  "foldhash 0.1.5",
- "serde",
 ]
 
 [[package]]
@@ -3832,6 +3843,9 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e0242819d153cba4b4b05a5a8f2a7e9bbf97b6055b2a002b395c96b5ff3c0222"
 dependencies = [
  "cfg-if",
+ "js-sys",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
@@ -5276,7 +5290,7 @@ dependencies = [
  "once_cell",
  "socket2",
  "tracing",
- "windows-sys 0.52.0",
+ "windows-sys 0.59.0",
 ]
 
 [[package]]
@@ -6298,7 +6312,10 @@ version = "0.1.0"
 dependencies = [
  "base64 0.22.1",
  "dotenvy",
+ "futures",
+ "gloo-timers",
  "hex",
+ "instant",
  "regex-lite",
  "reqwest",
  "serde",
@@ -6306,7 +6323,6 @@ dependencies = [
  "starknet-crypto 0.8.1",
  "starknet-types-core",
  "thiserror 2.0.18",
- "tokio",
  "tracing",
 ]
 
@@ -7039,7 +7055,7 @@ dependencies = [
  "dashmap",
  "educe 0.5.11",
  "fnv",
- "hashbrown 0.15.5",
+ "hashbrown 0.16.1",
  "hex",
  "indexmap 2.13.0",
  "itertools 0.12.1",
@@ -7179,7 +7195,7 @@ name = "stwo-constraint-framework"
 version = "2.1.0"
 source = "git+https://github.com/starkware-libs/stwo?rev=aeceb74c#aeceb74c58184d7886ebd7f34a7453fee714ca40"
 dependencies = [
- "hashbrown 0.15.5",
+ "hashbrown 0.16.1",
  "itertools 0.12.1",
  "num-traits",
  "rand 0.8.5",
@@ -7289,7 +7305,7 @@ version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d8c27177b12a6399ffc08b98f76f7c9a1f4fe9fc967c784c5a071fa8d93cf7e1"
 dependencies = [
- "windows-sys 0.59.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]
@@ -8155,7 +8171,7 @@ version = "0.1.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c2a7b1c03c876122aa43f3020e6c3c3ee5c05081c9a00739faf7503aeba10d22"
 dependencies = [
- "windows-sys 0.52.0",
+ "windows-sys 0.61.2",
 ]
 
 [[package]]

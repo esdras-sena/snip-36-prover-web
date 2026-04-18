@@ -1,3 +1,5 @@
+use gloo_timers::future::sleep;
+use instant::Instant;
 use serde_json::Value;
 use tracing::debug;
 
@@ -190,9 +192,9 @@ impl StarknetRpc {
         timeout_secs: u64,
         poll_interval_secs: u64,
     ) -> Result<Value, RpcError> {
-        let deadline = tokio::time::Instant::now() + std::time::Duration::from_secs(timeout_secs);
+        let deadline = Instant::now() + std::time::Duration::from_secs(timeout_secs);
         loop {
-            if tokio::time::Instant::now() >= deadline {
+            if Instant::now() >= deadline {
                 return Err(RpcError::TxTimeout {
                     tx_hash: tx_hash.to_string(),
                     timeout: timeout_secs,
@@ -222,7 +224,7 @@ impl StarknetRpc {
                 }
             }
             debug!(tx_hash, "waiting for tx confirmation...");
-            tokio::time::sleep(std::time::Duration::from_secs(poll_interval_secs)).await;
+            sleep(std::time::Duration::from_secs(poll_interval_secs)).await;
         }
     }
 
@@ -233,9 +235,9 @@ impl StarknetRpc {
         timeout_secs: u64,
         poll_interval_secs: u64,
     ) -> Result<u64, RpcError> {
-        let deadline = tokio::time::Instant::now() + std::time::Duration::from_secs(timeout_secs);
+        let deadline = Instant::now() + std::time::Duration::from_secs(timeout_secs);
         loop {
-            if tokio::time::Instant::now() >= deadline {
+            if Instant::now() >= deadline {
                 return Err(RpcError::BlockTimeout {
                     block_number,
                     timeout: timeout_secs,
@@ -246,7 +248,7 @@ impl StarknetRpc {
                     return Ok(current);
                 }
             }
-            tokio::time::sleep(std::time::Duration::from_secs(poll_interval_secs)).await;
+            sleep(std::time::Duration::from_secs(poll_interval_secs)).await;
         }
     }
 }
