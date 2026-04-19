@@ -4,11 +4,15 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 color-eyre = "0.6"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-blockifier_reexecution = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "blockifier_reexecution" }
 starknet_api = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_api" }
-starknet_transaction_prover = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_transaction_prover", features = ["stwo_proving"] }
+starknet-transaction-prover-wasm = { path = "../starknet-transaction-prover-wasm" }
 
+[features]
+stwo_proving = ["starknet-transaction-prover-wasm/stwo_proving"]

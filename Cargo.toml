@@ -1,48 +1,139 @@
 [workspace]
 resolver = "2"
 members = [
+    "crates/blockifier-reexecution-wasm",
     "crates/snip36-core",
+    "crates/snip36-virtual-os",
     "crates/snip36-web-prover",
+    "crates/starknet-transaction-prover-wasm",
 ]
 # The extractor crate depends on deps/sequencer/ (cloned by `snip36 setup`).
 # It is excluded from the default workspace so `cargo build` works without it.
 exclude = ["extractor"]
 
+# Replace the key git dependencies with the local WASM-compatible fork in deps/sequencer.
+# The local fork removes default runtime features from apollo_infra_utils and starknet_api
+# so that tokio/process (which requires mio) is not pulled into WASM builds.
+[patch."https://github.com/starkware-libs/sequencer"]
+apollo_compile_to_native_types = { path = "deps/sequencer/crates/apollo_compile_to_native_types" }
+apollo_config      = { path = "deps/sequencer/crates/apollo_config" }
+apollo_infra_utils = { path = "deps/sequencer/crates/apollo_infra_utils" }
+apollo_metrics     = { path = "deps/sequencer/crates/apollo_metrics" }
+apollo_proc_macros = { path = "deps/sequencer/crates/apollo_proc_macros" }
+apollo_sizeof      = { path = "deps/sequencer/crates/apollo_sizeof" }
+apollo_sizeof_macros = { path = "deps/sequencer/crates/apollo_sizeof_macros" }
+apollo_time        = { path = "deps/sequencer/crates/apollo_time" }
+blockifier         = { path = "deps/sequencer/crates/blockifier" }
+shared_execution_objects = { path = "deps/sequencer/crates/shared_execution_objects" }
+starknet_api       = { path = "deps/sequencer/crates/starknet_api" }
+starknet_committer = { path = "deps/sequencer/crates/starknet_committer" }
+starknet_os        = { path = "deps/sequencer/crates/starknet_os" }
+starknet_patricia  = { path = "deps/sequencer/crates/starknet_patricia" }
+starknet_patricia_storage = { path = "deps/sequencer/crates/starknet_patricia_storage" }
+starknet_proof_verifier = { path = "deps/sequencer/crates/starknet_proof_verifier" }
+
 [workspace.package]
-version = "0.1.0"
+version = "0.18.0-dev.2"
 edition = "2021"
 license = "MIT OR Apache-2.0"
+license-file = "LICENSE-APACHE"
 repository = "https://github.com/esdras-santos/snip-36-prover-web"
 
 [workspace.dependencies]
-# Imported from deps/sequencer workspace so path dependencies with `workspace = true`
-# resolve correctly from this repo root.
-apollo_compile_to_casm = { path = "deps/sequencer/crates/apollo_compile_to_casm", version = "0.18.0-dev.2" }
-apollo_compile_to_native = { path = "deps/sequencer/crates/apollo_compile_to_native", version = "0.18.0-dev.2" }
-apollo_config = { path = "deps/sequencer/crates/apollo_config", version = "0.18.0-dev.2" }
-apollo_infra_utils = { path = "deps/sequencer/crates/apollo_infra_utils", version = "0.18.0-dev.2" }
-apollo_metrics = { path = "deps/sequencer/crates/apollo_metrics", version = "0.18.0-dev.2" }
-apollo_proc_macros = { path = "deps/sequencer/crates/apollo_proc_macros", version = "0.18.0-dev.2" }
-apollo_sizeof = { path = "deps/sequencer/crates/apollo_sizeof", version = "0.18.0-dev.2" }
-apollo_sizeof_macros = { path = "deps/sequencer/crates/apollo_sizeof_macros", version = "0.18.0-dev.2" }
-apollo_starknet_os_program = { path = "deps/sequencer/crates/apollo_starknet_os_program", version = "0.18.0-dev.2" }
-apollo_time = { path = "deps/sequencer/crates/apollo_time", version = "0.18.0-dev.2" }
-blockifier = { path = "deps/sequencer/crates/blockifier", version = "0.18.0-dev.2" }
-blockifier_reexecution = { path = "deps/sequencer/crates/blockifier_reexecution" }
-blockifier_test_utils = { path = "deps/sequencer/crates/blockifier_test_utils", version = "0.18.0-dev.2" }
-native_blockifier = { path = "deps/sequencer/crates/native_blockifier" }
-shared_execution_objects = { path = "deps/sequencer/crates/shared_execution_objects" }
-starknet_api = { path = "deps/sequencer/crates/starknet_api", version = "0.18.0-dev.2" }
-starknet_os = { path = "deps/sequencer/crates/starknet_os" }
-starknet_proof_verifier = { path = "deps/sequencer/crates/starknet_proof_verifier", version = "0.18.0-dev.2" }
-starknet_transaction_prover = { path = "deps/sequencer/crates/starknet_transaction_prover" }
-workspace_tests = { path = "deps/sequencer/workspace_tests" }
-
-# External versions mirrored from sequencer workspace where needed
+# Aerospike minor version bump includes breaking change.
 aerospike = "=2.0.0-alpha.6"
 alloy = "1.1.0"
 alloy-primitives = "1.5"
 anyhow = "1.0.44"
+apollo_base_layer_tests.path = "crates/apollo_base_layer_tests"
+apollo_batcher.path = "crates/apollo_batcher"
+apollo_batcher_config.path = "crates/apollo_batcher_config"
+apollo_batcher_types.path = "crates/apollo_batcher_types"
+apollo_central_sync.path = "crates/apollo_central_sync"
+apollo_central_sync_config.path = "crates/apollo_central_sync_config"
+apollo_class_manager.path = "crates/apollo_class_manager"
+apollo_class_manager_config.path = "crates/apollo_class_manager_config"
+apollo_class_manager_types.path = "crates/apollo_class_manager_types"
+apollo_committer.path = "crates/apollo_committer"
+apollo_committer_config.path = "crates/apollo_committer_config"
+apollo_committer_types.path = "crates/apollo_committer_types"
+apollo_compilation_utils = { path = "crates/apollo_compilation_utils", version = "0.18.0-dev.2" }
+apollo_compile_to_casm.path = "crates/apollo_compile_to_casm"
+apollo_compile_to_casm_types.path = "crates/apollo_compile_to_casm_types"
+apollo_compile_to_native = { path = "crates/apollo_compile_to_native", version = "0.18.0-dev.2" }
+apollo_compile_to_native_types = { path = "deps/sequencer/crates/apollo_compile_to_native_types", version = "0.18.0-dev.2" }
+apollo_config = { path = "deps/sequencer/crates/apollo_config", version = "0.18.0-dev.2" }
+apollo_config_manager.path = "crates/apollo_config_manager"
+apollo_config_manager_config.path = "crates/apollo_config_manager_config"
+apollo_config_manager_types.path = "crates/apollo_config_manager_types"
+apollo_consensus.path = "crates/apollo_consensus"
+apollo_consensus_config.path = "crates/apollo_consensus_config"
+apollo_consensus_manager.path = "crates/apollo_consensus_manager"
+apollo_consensus_manager_config.path = "crates/apollo_consensus_manager_config"
+apollo_consensus_orchestrator.path = "crates/apollo_consensus_orchestrator"
+apollo_consensus_orchestrator_config.path = "crates/apollo_consensus_orchestrator_config"
+apollo_dashboard.path = "crates/apollo_dashboard"
+apollo_deployments.path = "crates/apollo_deployments"
+apollo_gateway.path = "crates/apollo_gateway"
+apollo_gateway_config.path = "crates/apollo_gateway_config"
+apollo_gateway_types.path = "crates/apollo_gateway_types"
+apollo_http_server.path = "crates/apollo_http_server"
+apollo_http_server_config.path = "crates/apollo_http_server_config"
+apollo_infra.path = "crates/apollo_infra"
+apollo_infra_utils = { path = "deps/sequencer/crates/apollo_infra_utils", version = "0.18.0-dev.2" }
+apollo_integration_tests.path = "crates/apollo_integration_tests"
+apollo_l1_gas_price.path = "crates/apollo_l1_gas_price"
+apollo_l1_gas_price_provider_config.path = "crates/apollo_l1_gas_price_provider_config"
+apollo_l1_gas_price_types.path = "crates/apollo_l1_gas_price_types"
+apollo_l1_provider.path = "crates/apollo_l1_provider"
+apollo_l1_provider_config.path = "crates/apollo_l1_provider_config"
+apollo_l1_provider_types.path = "crates/apollo_l1_provider_types"
+apollo_l1_scraper_config.path = "crates/apollo_l1_scraper_config"
+apollo_mempool.path = "crates/apollo_mempool"
+apollo_mempool_config.path = "crates/apollo_mempool_config"
+apollo_mempool_p2p.path = "crates/apollo_mempool_p2p"
+apollo_mempool_p2p_config.path = "crates/apollo_mempool_p2p_config"
+apollo_mempool_p2p_types.path = "crates/apollo_mempool_p2p_types"
+apollo_mempool_types.path = "crates/apollo_mempool_types"
+apollo_metrics = { path = "deps/sequencer/crates/apollo_metrics", version = "0.18.0-dev.2" }
+apollo_monitoring_endpoint.path = "crates/apollo_monitoring_endpoint"
+apollo_monitoring_endpoint_config.path = "crates/apollo_monitoring_endpoint_config"
+apollo_network.path = "crates/apollo_network"
+apollo_network_benchmark.path = "crates/apollo_network_benchmark"
+apollo_network_types.path = "crates/apollo_network_types"
+apollo_node.path = "crates/apollo_node"
+apollo_node_config.path = "crates/apollo_node_config"
+apollo_p2p_sync.path = "crates/apollo_p2p_sync"
+apollo_p2p_sync_config.path = "crates/apollo_p2p_sync_config"
+apollo_proc_macros = { path = "deps/sequencer/crates/apollo_proc_macros", version = "0.18.0-dev.2" }
+apollo_proc_macros_tests.path = "crates/apollo_proc_macros_tests"
+apollo_proof_manager.path = "crates/apollo_proof_manager"
+apollo_proof_manager_config.path = "crates/apollo_proof_manager_config"
+apollo_proof_manager_types.path = "crates/apollo_proof_manager_types"
+apollo_propeller.path = "crates/apollo_propeller"
+apollo_protobuf.path = "crates/apollo_protobuf"
+apollo_reverts.path = "crates/apollo_reverts"
+apollo_rpc.path = "crates/apollo_rpc"
+apollo_rpc_execution.path = "crates/apollo_rpc_execution"
+apollo_sierra_compilation_config.path = "crates/apollo_sierra_compilation_config"
+apollo_signature_manager.path = "crates/apollo_signature_manager"
+apollo_signature_manager_types.path = "crates/apollo_signature_manager_types"
+apollo_sizeof = { path = "deps/sequencer/crates/apollo_sizeof", version = "0.18.0-dev.2" }
+apollo_sizeof_macros = { path = "deps/sequencer/crates/apollo_sizeof_macros", version = "0.18.0-dev.2" }
+apollo_staking.path = "crates/apollo_staking"
+apollo_staking_config.path = "crates/apollo_staking_config"
+apollo_starknet_client.path = "crates/apollo_starknet_client"
+apollo_starknet_os_program = { path = "deps/sequencer/crates/apollo_starknet_os_program", version = "0.18.0-dev.2" }
+apollo_state_reader.path = "crates/apollo_state_reader"
+apollo_state_sync.path = "crates/apollo_state_sync"
+apollo_state_sync_config.path = "crates/apollo_state_sync_config"
+apollo_state_sync_metrics.path = "crates/apollo_state_sync_metrics"
+apollo_state_sync_types.path = "crates/apollo_state_sync_types"
+apollo_storage.path = "crates/apollo_storage"
+apollo_task_executor.path = "crates/apollo_task_executor"
+apollo_test_utils.path = "crates/apollo_test_utils"
+apollo_time = { path = "deps/sequencer/crates/apollo_time", version = "0.18.0-dev.2" }
+apollo_transaction_converter.path = "crates/apollo_transaction_converter"
 ark-bls12-381 = "0.5.0"
 ark-ec = "0.5.0"
 ark-ff = "0.5.0"
@@ -56,10 +147,15 @@ async-stream = "0.3.3"
 async-trait = "0.1.79"
 asynchronous-codec = "0.7.0"
 axum = "0.8"
-base64 = "0.22"
+base64 = "0.13.0"
+bench_tools.path = "crates/bench_tools"
 bincode = "1.3.3"
 bitvec = "1.0.1"
 blake2 = "0.10.6"
+blockifier = { path = "deps/sequencer/crates/blockifier", version = "0.18.0-dev.2" }
+blockifier_reexecution.path = "crates/blockifier_reexecution"
+blockifier_test_utils = { path = "crates/blockifier_test_utils", version = "0.18.0-dev.2" }
+byteorder = "1.4.3"
 bytes = "1"
 bzip2 = { version = "0.5.0", default-features = false }
 c-kzg = "2.1.5"
@@ -78,7 +174,6 @@ cairo-vm = "3.2.0"
 camelpaste = "0.1.0"
 chrono = "0.4.26"
 clap = "4.5.4"
-color-eyre = "0.6"
 colored = "3"
 const_format = "0.2.30"
 criterion = "0.5.1"
@@ -93,7 +188,6 @@ enum-as-inner = "0.6.1"
 enum-assoc = "1.1.0"
 enum-iterator = "2.3.0"
 ethnum = "1.5.0"
-eyre = "0.6"
 expect-test = "1.5.1"
 flate2 = "1.0.24"
 futures = "0.3.21"
@@ -101,7 +195,7 @@ futures-channel = "0.3.21"
 futures-util = "0.3.21"
 glob = "0.3.1"
 google-cloud-storage = "0.22.1"
-hex = "0.4"
+hex = "0.4.3"
 http = "1.1"
 http-body-util = "0.1"
 human_bytes = "0.4.3"
@@ -123,10 +217,12 @@ libp2p-swarm-test = "0.6.0"
 log = "0.4"
 lru = "0.12.0"
 memmap2 = "0.8.0"
+mempool_test_utils.path = "crates/mempool_test_utils"
 metrics = "0.24.1"
 metrics-exporter-prometheus = "0.16.1"
 mockall = "0.12.1"
 mockito = "1.4.0"
+native_blockifier.path = "crates/native_blockifier"
 nix = "0.20.0"
 notify = "8.2.0"
 num-bigint = "0.4"
@@ -137,6 +233,8 @@ num_enum = "0.7.3"
 once_cell = "1.19.0"
 os_info = "3.6.0"
 page_size = "0.6.0"
+papyrus_base_layer.path = "crates/papyrus_base_layer"
+papyrus_common = { path = "deps/sequencer/crates/papyrus_common", version = "0.18.0-dev.2" }
 parity-scale-codec = "3.6"
 parity-scale-codec-derive = "3.6"
 paste = "1.0.15"
@@ -154,13 +252,13 @@ protoc-prebuilt = "0.3.0"
 pyo3 = "0.19.1"
 pyo3-log = "0.8.1"
 quote = "1.0.26"
-rand = "0.8"
+rand = "0.8.5"
 rand_chacha = "0.3.1"
 rand_distr = "0.4.3"
 reed-solomon-simd = "3.1.0"
 regex = "1.10.4"
 replace_with = "0.1.7"
-reqwest = { version = "0.12", features = ["json"] }
+reqwest = "0.12"
 reqwest-middleware = "0.4.2"
 reqwest-retry = "0.7.0"
 retry = "2.0.0"
@@ -171,30 +269,41 @@ rust-rocksdb = "0.44.1"
 rustc-hex = "2.1.0"
 schemars = "1.0.4"
 semver = "1.0.23"
-serde = { version = "1", features = ["derive"] }
-serde_json = "1"
+serde = "1.0.197"
+serde_json = "1.0.116"
 serde_repr = "0.1.19"
 serde_with = "3.12.0"
 sha2 = "0.10.8"
 sha3 = "0.10.8"
+shared_execution_objects = { path = "deps/sequencer/crates/shared_execution_objects", version = "0.18.0-dev.2" }
 simple_logger = "4.0.0"
 socket2 = "0.5.8"
 starknet-core = "0.16.0"
-starknet-crypto = "0.8"
+starknet-crypto = "0.8.1"
 starknet-ff = "0.3.7"
 starknet-rust = "0.17.0"
 starknet-rust-core = "0.16.0"
-starknet-types-core = "0.2"
+starknet-types-core = "0.2.4"
+starknet_api = { path = "deps/sequencer/crates/starknet_api", version = "0.18.0-dev.2" }
+starknet_committer = { path = "deps/sequencer/crates/starknet_committer", version = "0.18.0-dev.2" }
+starknet_committer_and_os_cli.path = "crates/starknet_committer_and_os_cli"
+starknet_committer_cli.path = "crates/starknet_committer_cli"
+starknet_os = { path = "deps/sequencer/crates/starknet_os", version = "0.18.0-dev.2" }
+starknet_os_flow_tests.path = "crates/starknet_os_flow_tests"
+starknet_patricia = { path = "deps/sequencer/crates/starknet_patricia", version = "0.18.0-dev.2" }
+starknet_patricia_storage = { path = "deps/sequencer/crates/starknet_patricia_storage", version = "0.18.0-dev.2" }
+starknet_proof_verifier = { path = "deps/sequencer/crates/starknet_proof_verifier", version = "0.18.0-dev.2" }
+starknet_transaction_prover.path = "crates/starknet_transaction_prover"
 static_assertions = "1.1.0"
 strum = "0.27.2"
 syn = "2.0.39"
 tempfile = "3.7.0"
 test-case = "3.2.1"
 test-log = "0.2.14"
-thiserror = "2"
+thiserror = "1.0.37"
 tikv-jemallocator = "0.5.4"
 time = "0.3.37"
-tokio = { version = "1", features = ["full"] }
+tokio = "1.47.1"
 tokio-metrics = "0.4.4"
 tokio-retry = "0.3"
 tokio-rustls = "0.26.4"
@@ -202,10 +311,11 @@ tokio-stream = "0.1.8"
 tokio-test = "0.4.4"
 tokio-util = "0.7.13"
 toml = "0.8"
+toml_test_utils.path = "toml_test_utils"
 tower = "0.5.2"
 tower-http = "0.6"
-tracing = "0.1"
-tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+tracing = "0.1.37"
+tracing-subscriber = "0.3.16"
 tracing-test = "0.2"
 trybuild = "1.0.105"
 unsigned-varint = "0.8.0"
@@ -213,4 +323,27 @@ url = "2.5.0"
 validator = "0.20"
 void = "1.0.2"
 waker-fn = "1.2.0"
+workspace_tests.path = "workspace_tests"
 zstd = "0.13.1"
+
+# Note: both rust and clippy lints are warning by default and denied on the CI (see run_tests.py).
+# To deny warnings in local dev env:
+# - In the terminal: add to .bashrc `export RUSTFLAGS="$RUSTFLAGS -Dwarnings"
+# - In vscode, add to settings.json "rust-analyzer.cargo.extraEnv": { "RUSTFLAGS": "-Dwarnings" }`
+[workspace.lints.rust]
+future-incompatible = "warn"
+nonstandard-style = "warn"
+rust-2018-idioms = "warn"
+unexpected_cfgs = { level = "warn", check-cfg = [
+  # See [here](https://github.com/taiki-e/cargo-llvm-cov/issues/370) for a discussion on why this is
+  # needed (from rust 1.80).
+  'cfg(coverage_nightly)',
+  # From rust 1.84, seems like the pyo3 crate version we are using breaks. Remove this once pyo3 is
+  # removed from the workspace.
+  'cfg(addr_of)',
+] }
+
+[workspace.lints.clippy]
+as_conversions = "warn"
+await_holding_lock = "warn"
+await_holding_refcell_ref = "warn"

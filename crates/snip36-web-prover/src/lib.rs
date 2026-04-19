@@ -8,7 +8,10 @@ use snip36_virtual_os::{parse_transaction_json, run_virtual_os, VirtualOsConfig}
 use starknet_api::core::ChainId;
 use starknet_types_core::felt::Felt;
 
-#[derive(Debug, Clone)]
+#[cfg(target_arch = "wasm32")]
+use wasm_bindgen::prelude::*;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct ProveBlockArgs {
     pub reference_block: u64,
     pub account_address: String,
@@ -247,6 +250,18 @@ pub async fn prove_block(
         tx_hash: format!("{:#x}", standard_tx_hash),
         signature: [format!("{:#x}", sig.r), format!("{:#x}", sig.s)],
     })
+}
+
+#[cfg(target_arch = "wasm32")]
+#[wasm_bindgen(js_name = proveBlock)]
+pub async fn prove_block_wasm(args: JsValue) -> Result<JsValue, JsError> {
+    let args: ProveBlockArgs = serde_wasm_bindgen::from_value(args)
+        .map_err(|e| JsError::new(&format!("invalid args: {e}")))?;
+    let rpc = StarknetRpc::new(&args.rpc_url);
+    let result = prove_block(&rpc, args)
+        .await
+        .map_err(|e| JsError::new(&e.to_string()))?;
+    serde_wasm_bindgen::to_value(&result).map_err(|e| JsError::new(&e.to_string()))
 }
 
 // pub async fn submit_proof(

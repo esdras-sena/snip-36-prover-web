@@ -3,18 +3,14 @@
 //! The prover outputs proof as a base64-encoded string. Legacy format was
 //! cairo-serde JSON (array of hex felt strings) packed as big-endian u32 values.
 
-use base64::{engine::general_purpose::STANDARD as BASE64, Engine};
-
 /// Decode a base64 proof string into raw bytes.
 pub fn decode_proof_base64(b64: &str) -> Result<Vec<u8>, ProofError> {
-    BASE64
-        .decode(b64.trim())
-        .map_err(|e| ProofError::Base64Decode(e.to_string()))
+    base64::decode(b64.trim()).map_err(|e| ProofError::Base64Decode(e.to_string()))
 }
 
 /// Encode raw proof bytes as a base64 string.
 pub fn encode_proof_base64(bytes: &[u8]) -> String {
-    BASE64.encode(bytes)
+    base64::encode(bytes)
 }
 
 /// Convert legacy cairo-serde JSON proof (array of hex felt strings) to

@@ -1,0 +1,42 @@
+[package]
+name = "starknet-transaction-prover-wasm"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+anyhow = "1"
+async-trait = "0.1"
+blockifier = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "blockifier", features = ["reexecution"] }
+blockifier-reexecution-wasm = { path = "../blockifier-reexecution-wasm" }
+cairo-lang-starknet-classes = "2.16.0"
+cairo-lang-utils = "2.16.0"
+cairo-vm = "3.2.0"
+futures = "0.3"
+indexmap = "2.1"
+privacy-prove = { git = "https://github.com/starkware-libs/proving-utils", rev = "dbc39e745d23424f1997ce3505ce5f83805cefde", optional = true }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+shared_execution_objects = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "shared_execution_objects" }
+starknet-rust = "0.17.0"
+starknet-rust-core = "0.16.0"
+starknet-types-core = "0.2"
+starknet_api = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_api" }
+starknet_committer = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_committer" }
+starknet_os = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_os" }
+starknet_patricia = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_patricia" }
+starknet_patricia_storage = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_patricia_storage" }
+starknet_proof_verifier = { git = "https://github.com/starkware-libs/sequencer", tag = "PRIVACY-0.14.2-RC.2", package = "starknet_proof_verifier" }
+thiserror = "2"
+tracing = "0.1"
+url = "2.5.0"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.3", features = ["wasm_js"] }
+wasm-bindgen-futures = "0.4"
+
+[features]
+stwo_proving = ["dep:privacy-prove"]
