@@ -50,11 +50,12 @@ impl RpcStateReader {
         method: &str,
         params: impl Serialize,
     ) -> ReexecutionResult<Value> {
+        let params_json = json!(params);
         let request_body = json!({
             "jsonrpc": self.config.json_rpc_version,
             "id": 0,
             "method": method,
-            "params": json!(params),
+            "params": params_json,
         });
 
         let response = reqwest::Client::new()
@@ -82,7 +83,17 @@ impl RpcStateReader {
                 RPC_TRANSACTION_EXECUTION_ERROR => {
                     Err(ReexecutionError::TransactionExecution(err.error.message))
                 }
-                RPC_ERROR_INVALID_PARAMS => Err(ReexecutionError::InvalidParams(err.error.message)),
+                RPC_ERROR_INVALID_PARAMS => {
+                    let data = err
+                        .error
+                        .data
+                        .map(|d| format!(" data={d}"))
+                        .unwrap_or_default();
+                    Err(ReexecutionError::InvalidParams(format!(
+                        "{method}: {msg}{data} params={params_json}",
+                        msg = err.error.message
+                    )))
+                }
                 code => Err(ReexecutionError::UnexpectedRpc { code, message: err.error.message }),
             },
         }
@@ -181,7 +192,7 @@ impl RpcStateReader {
                     SierraVersion::extract_from_program(&sierra_api.sierra_program).map_err(
                         |e| ReexecutionError::CompiledClass(format!("extract sierra version: {e}")),
                     )?;
-                let params = GetCompiledClassParams { class_hash, block_id: self.block_id };
+                let params = json!({ "class_hash": class_hash.0.to_hex_string() });
                 let casm_json =
                     self.send_rpc_request_async("starknet_getCompiledCasm", params).await?;
                 let compiled = CompiledClassV1::try_from_json_string(
@@ -210,7 +221,7 @@ impl RpcStateReader {
                     SierraVersion::extract_from_program(&sierra_api.sierra_program).map_err(
                         |e| ReexecutionError::CompiledClass(format!("extract sierra version: {e}")),
                     )?;
-                let params = GetCompiledClassParams { class_hash, block_id: self.block_id };
+                let params = json!({ "class_hash": class_hash.0.to_hex_string() });
                 let casm_json =
                     self.send_rpc_request_async("starknet_getCompiledCasm", params).await?;
                 let compiled = CompiledClassV1::try_from_json_string(
