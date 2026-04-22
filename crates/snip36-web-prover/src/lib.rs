@@ -92,7 +92,7 @@ pub async fn prove_block(
         felt_from_hex(&args.private_key).map_err(WebProverError::InvalidPrivateKey)?;
     let chain_id = args.chain_id.clone();
     let chain_id_felt = chain_id_felt(&chain_id);
-    let resource_bounds = ResourceBounds::default();
+    let resource_bounds = ResourceBounds::zero_fee();
 
     let nonce = rpc
         .get_nonce_at_block(
